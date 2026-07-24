@@ -10,9 +10,13 @@
 
 @font-face {
 
-    font-family: Aviny;
+    font-family: "Aviny";
 
-    src: url("Aviny.ttf");
+    src: url("./Aviny.ttf") format("truetype");
+
+   font-weight: normal;
+
+    font-style: normal;
 
 }
 
@@ -20,7 +24,7 @@ body{
 
     direction:rtl;
 
-    font-family:Aviny, Tahoma, sans-serif;
+    font-family: "Aviny", Tahoma, sans-serif;
 
     background:#eef5ff;
 
