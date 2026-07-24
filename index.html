@@ -17,6 +17,31 @@
 
 <!--لطفا جهت کنجکاوی کدها را تغییر ندهید باتشکر  -->
 
+
+<div id="modal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <button id="closeModal">✖</button>
+
+        <h2 id="modalTitle"></h2>
+
+        <div id="modalBody"></div>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<button class="action-button" onclick="exportImage()">
+    دانلود نتایج
+</button>
+
+
+
+
 <body>
 
 <header>
@@ -39,6 +64,59 @@
     
 </header>
 
+
+<div class="legend">
+
+    <h3>راهنمای وضعیت</h3>
+
+    <div class="legend-grid">
+
+        <div class="legend-item">
+            <span class="legend-color passed"></span>
+            <span>درس پاس یا اخذ شده (✅)</span>
+        </div>
+
+        <div class="legend-item">
+            <span class="legend-color available"></span>
+            <span>قابل اخذ (🤔)</span>
+        </div>
+
+        <div class="legend-item">
+            <span class="legend-color locked"></span>
+            <span>قفل / پیش‌نیاز پاس نشده (🚫)</span>
+        </div>
+
+        <div class="legend-item">
+            <button class="legend-btn">⭐</button>
+            <span>نمایش دروس هم‌نیاز در همان ترم</span>
+        </div>
+
+        <div class="legend-item">
+            <button class="legend-btn">دروس آینده</button>
+            <span>نمایش درس‌هایی که بعدا با پاس شدن این درس باز می‌شوند</span>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="progress-card">
+
+    <div class="progress-header">
+
+        <span>گذرانده شده</span>
+
+        <span id="progressText"></span>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div id="progressFill"></div>
+
+    </div>
+
+</div>
 
 <main id="semestersContainer">
 
