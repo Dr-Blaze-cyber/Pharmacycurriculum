@@ -24,7 +24,6 @@ function loadPassedCourses() {
 }
 
 
-
 // ===
 // ذخیره وضعیت پاس شدن
 // ===
@@ -55,6 +54,32 @@ function getCourse(id) {
 }
 
 
+// ===
+// نمایش مودال
+// ===
+
+function showModal(title, content) {
+
+    document.getElementById("modalTitle").textContent = title;
+
+    document.getElementById("modalBody").innerHTML = content;
+
+    document.getElementById("modal").classList.remove("hidden");
+
+}
+
+
+// ===
+// بستن مودال
+// ===
+
+function closeModal() {
+
+    document.getElementById("modal").classList.add("hidden");
+
+}
+
+
 
 // ===
 // محاسبه وضعیت تمام درس‌ها
@@ -77,6 +102,28 @@ function calculateCourseStates() {
         //---
         // بررسی پیش نیازها
         //---
+
+        if (course.minPassedUnits) {
+
+            let passedUnits = 0;
+        
+            courses.forEach(c => {
+        
+                if (c.passed)
+                    passedUnits += Number(c.units);
+        
+            });
+        
+            if (passedUnits < course.minPassedUnits) {
+        
+                course.available = false;
+                course.locked = true;
+        
+                return;
+        
+            }
+        
+        }
 
         let prerequisitesPassed = true;
 
@@ -119,7 +166,7 @@ function calculateCourseStates() {
         // نتیجه
         //---
 
-        if (prerequisitesPassed && corequisitesPassed) {
+        if (prerequisitesPassed) {
 
             course.available = true;
             course.locked = false;
@@ -226,14 +273,14 @@ function createSemesterCard(semester, semesterCourses) {
 
 
 // ===
-// بررسی اینکه درس پیش نیاز آینده است یا نه
+// پیدا کردن درس‌هایی که این درس پیش‌نیاز آن‌هاست
 // ===
 
-function isFutureImportant(course) {
+function getFutureCourses(courseId) {
 
-    return courses.some(otherCourse => {
+    return courses.filter(course => {
 
-        return otherCourse.prerequisites.includes(course.id);
+        return course.prerequisites.includes(courseId);
 
     });
 
@@ -258,18 +305,6 @@ function createCourseRow(course) {
     if (course.locked) {
 
         tr.classList.add("status-locked");
-    
-    }
-    
-    else if (course.passed) {
-    
-        tr.classList.add("normal-course");
-    
-    }
-    
-    else if (isFutureImportant(course)) {
-    
-        tr.classList.add("future-important");
     
     }
     
@@ -311,8 +346,58 @@ function createCourseRow(course) {
 
     const name = document.createElement("td");
 
-    name.textContent = course.name;
+const title = document.createElement("span");
 
+title.textContent = course.name;
+
+name.appendChild(title);
+
+
+// دکمه هم‌نیاز
+
+if (course.corequisites.length > 0) {
+
+    const coreBtn = document.createElement("button");
+
+    coreBtn.textContent = "⭐";
+
+    coreBtn.className = "corequisite-button";
+
+    coreBtn.title = "نمایش هم‌نیاز";
+
+    coreBtn.addEventListener("click", function (e) {
+
+        e.stopPropagation();
+
+        showCorequisites(course);
+
+    });
+
+    name.appendChild(coreBtn);
+
+}
+
+// دکمه دروس آینده
+
+if (getFutureCourses(course.id).length > 0) {
+
+    const futureBtn = document.createElement("button");
+
+    futureBtn.textContent = "دروس آینده";
+
+    futureBtn.className = "future-button";
+
+    futureBtn.addEventListener("click", function (e) {
+
+        e.stopPropagation();
+
+        showFutureCourses(course);
+
+    });
+
+    name.appendChild(futureBtn);
+
+}
 
     //---
     // ستون تعداد واحد
@@ -347,14 +432,70 @@ function createCourseRow(course) {
 function courseClicked(course) {
 
 
+    if (course.minPassedUnits) {
+
+        let passedUnits = 0;
+    
+        courses.forEach(c => {
+    
+            if (c.passed)
+                passedUnits += Number(c.units);
+    
+        });
+    
+        if (passedUnits < course.minPassedUnits) {
+    
+            showModal(
+                "حداقل واحد لازم",
+                `
+                <p>برای اخذ این درس باید حداقل
+                <b>${course.minPassedUnits}</b>
+                واحد پاس کرده باشید.</p>
+            
+                <p>واحدهای پاس‌شده فعلی:
+                <b>${passedUnits}</b></p>
+                `
+            );
+    
+            return;
+    
+        }
+    
+    }
+    
+    
     if (course.locked) {
 
-        alert("این درس هنوز قابل اخذ نیست.");
+        let html = "<b>برای اخذ این درس باید این پیش‌نیازها را پاس کنید:</b><br><br>";
 
-        return;
+course.prerequisites.forEach(id => {
+
+    const c = getCourse(id);
+
+    if (!c.passed) {
+
+        html += "❌ " + c.name + "<br>";
 
     }
 
+});
+
+if (course.corequisites.length) {
+
+    html += "<br><b>هم‌نیازها:</b><br>";
+
+    course.corequisites.forEach(id => {
+
+        html += "★ " + getCourse(id).name + "<br>";
+
+        });
+    }
+
+    showModal(course.name, html);
+
+    return;
+    
+    }
 
     //---
     // تغییر وضعیت پاس شدن
@@ -391,7 +532,75 @@ function courseClicked(course) {
 
 }
 
-function updateCreditsInfo(){
+
+   // ===
+    // نمایش درس‌های آینده
+    // ===
+
+    function showFutureCourses(course) {
+
+        const future = getFutureCourses(course.id);
+    
+        if (future.length === 0) {
+    
+            showModal(
+                "درس‌های آینده",
+                "<p>این درس پیش‌نیاز هیچ درس دیگری نیست.</p>"
+            );
+            
+            return;
+    
+        }
+    
+        
+    
+        let html = "";
+
+    future.forEach(c => {
+
+    html += `
+        <div>
+            ترم ${c.semester} - ${c.name}
+        </div>
+    `;
+
+    });
+
+    showModal(
+        "درس‌های آینده",
+     html
+    );
+    
+    }
+
+    function showCorequisites(course) {
+
+        let html = "";
+    
+        course.corequisites.forEach(id => {
+    
+            const c = getCourse(id);
+    
+            if (c) {
+    
+                html += `
+                    <div>
+                        ⭐ ${c.name}
+                    </div>
+                `;
+    
+            }
+    
+        });
+    
+        showModal(
+            "هم‌نیازهای " + course.name,
+            html
+        );
+    
+    }
+
+    function updateCreditsInfo(){
 
     let passed = 0;
 
@@ -417,6 +626,17 @@ function updateCreditsInfo(){
 
     document.getElementById("remainingCredits").textContent = total - passed;
 
+    const percent = (passed / total) * 100;
+
+document.getElementById("progressFill").style.width =
+    percent + "%";
+
+document.getElementById("progressText").textContent =
+    passed + " / " + total + " واحد";
+
+    document.getElementById("progressText").textContent =
+`${passed} / ${total} (${percent.toFixed(1)}%)`;
+
 }
 
 
@@ -430,5 +650,42 @@ window.onload = function () {
 
     updateCreditsInfo();
 
+    document
+    .getElementById("closeModal")
+    .addEventListener("click", closeModal);
+
+document
+    .getElementById("modal")
+    .addEventListener("click", function(e){
+
+        if(e.target.id==="modal")
+            closeModal();
+
+    });
+
 };
 
+
+
+async function exportImage() {
+
+    const element =
+        document.getElementById("semestersContainer");
+
+    const canvas = await html2canvas(element, {
+
+        scale: 4,
+
+        useCORS: true
+
+    });
+
+    const link = document.createElement("a");
+
+    link.download = "Pharmacy-Roadmap.png";
+
+    link.href = canvas.toDataURL("image/png");
+
+    link.click();
+
+}
