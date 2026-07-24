@@ -10,13 +10,9 @@
 
 @font-face {
 
-    font-family: "Aviny";
+    font-family: Aviny;
 
-    src: url("./Aviny.ttf") format("truetype");
-
-   font-weight: normal;
-
-    font-style: normal;
+    src: url("Aviny.ttf");
 
 }
 
@@ -24,7 +20,7 @@ body{
 
     direction:rtl;
 
-    font-family: "Aviny", Tahoma, sans-serif;
+    font-family:Aviny, Tahoma, sans-serif;
 
     background:#eef5ff;
 
@@ -149,13 +145,6 @@ header h1{
 }
 
 
-.future-important{
-
-    background:#fff3a3;
-
-}
-
-
 .normal-course{
 
     background:white;
@@ -256,5 +245,221 @@ header h1{
     gap:20px;
 
     color:#0f4c81;
+
+}
+
+
+.future-button{
+
+    margin-right:10px;
+    border:none;
+    background:#1976d2;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+    padding:2px 7px;
+
+    font-family: "Aviny", Tahoma, sans-serif;
+
+    font-size:13px;
+    transition:.2s;
+
+}
+
+.future-button:hover{
+
+    background:#0d47a1;
+
+}
+
+
+.corequisite-button{
+
+    margin-right:6px;
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+.legend{
+
+    background:#fff;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    padding:15px;
+
+    margin-bottom:20px;
+
+}
+
+.legend h3{
+
+    margin:0 0 12px;
+
+}
+
+.legend-grid{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px 25px;
+
+}
+
+.legend-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+.legend-color{
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:5px;
+
+    border:1px solid #aaa;
+
+}
+
+.legend-color.passed{
+
+    background:#d9ffd9;
+
+}
+
+.legend-color.available{
+
+    background:#ffffff;
+
+}
+
+.legend-color.locked{
+
+    background:#ffd9d9;
+
+}
+
+.legend-btn{
+
+    border:none;
+
+    background:#1976d2;
+
+    color:white;
+
+    border-radius:6px;
+
+    padding:2px 8px;
+
+    font-size:13px;
+    font-family: "Aviny", Tahoma, sans-serif;
+
+}
+
+.progress-card{
+
+    background:#fff;
+
+    border-radius:12px;
+
+    padding:15px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.progress-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+    font-weight:bold;
+
+}
+
+.progress-bar{
+
+    width:100%;
+
+    height:18px;
+
+    background:#ececec;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+#progressFill{
+
+    height:100%;
+
+    width:0;
+
+    background:#4caf50;
+
+    transition:.4s;
+
+}
+
+.action-button{
+
+    font-family:"Aviny",Tahoma,sans-serif;
+
+    background:#1976d2;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    padding:8px 14px;
+
+    margin:5px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.2s;
+
+}
+
+.action-button:hover{
+
+    background:#1565c0;
+
+    transform:translateY(-2px);
+
+}
+
+.action-button:active{
+
+    transform:scale(.97);
 
 }
