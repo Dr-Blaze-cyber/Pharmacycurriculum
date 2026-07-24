@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>چارت دروس داروسازی</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<!--لطفا جهت کنجکاوی کدها را تغییر ندهید باتشکر  -->
+
+<body>
+
+<header>
+
+    <h1>چارت دروس داروسازی</h1>
+
+    <div id="creditInfo">
+
+        <span>
+            واحد پاس شده:
+            <b id="passedCredits">0</b>
+        </span>
+    
+        <span>
+            واحد باقی مانده:
+            <b id="remainingCredits">0</b>
+        </span>
+    
+    </div>
+    
+</header>
+
+
+<main id="semestersContainer">
+
+</main>
+
+
+<!-- پنجره اطلاعات درس -->
+
+<div id="courseModal"
+     class="modal hidden">
+
+    <div class="modal-content">
+
+        <button id="closeModal">
+
+            ✕
+
+        </button>
+
+        <h2 id="modalTitle">
+
+            نام درس
+
+        </h2>
+
+        <div id="modalBody">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="courses.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,256 @@
+/* ===
+   تنظیمات
+=== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+@font-face {
+
+    font-family: Aviny;
+
+    src: url("Aviny.ttf");
+
+}
+
+body{
+
+    direction:rtl;
+
+    font-family:Aviny, Tahoma, sans-serif;
+
+    background:#eef5ff;
+
+    color:#1f2937;
+
+    padding:20px;
+
+}
+
+
+/* ===
+   تایتل
+=== */
+
+header{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+header h1{
+
+    color:#0f4c81;
+
+    font-size:32px;
+
+}
+
+
+
+/* ===
+   همه ترم‌ها
+=== */
+
+#semestersContainer{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(360px,1fr));
+
+    gap:20px;
+
+}
+
+
+/* ===
+   جدول هر ترم
+=== */
+
+.semester-card{
+
+    background:white;
+
+    border-radius:12px;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.12);
+
+    overflow:hidden;
+
+}
+
+.semester-card h2{
+
+    background:#1976d2;
+
+    color:white;
+
+    text-align:center;
+
+    padding:12px;
+
+}
+
+
+/* ===
+   جدول
+=== */
+
+.semester-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.semester-table th{
+
+    background:#e3f2fd;
+
+    padding:10px;
+
+}
+
+.semester-table td{
+
+    padding:8px;
+
+    border-bottom:1px solid #ececec;
+
+    text-align:center;
+
+}
+
+.semester-table tr:hover{
+
+    background:#f8fbff;
+
+}
+
+
+/* ===
+   وضعیت‌ها
+=== */
+
+.status-locked{
+
+    background:#ffd6d6;
+
+}
+
+
+.future-important{
+
+    background:#fff3a3;
+
+}
+
+
+.normal-course{
+
+    background:white;
+
+}
+
+
+/* ===
+   کلیک
+=== */
+
+.course-row{
+
+    cursor:pointer;
+
+}
+
+
+/* ===
+   مودال
+=== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+.modal-content{
+
+    background:white;
+
+    width:500px;
+
+    max-width:90%;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    position:relative;
+
+}
+
+#closeModal{
+
+    position:absolute;
+
+    left:15px;
+
+    top:15px;
+
+}
+
+#modalBody{
+
+    margin-top:20px;
+
+    line-height:2;
+
+}
+
+/* استایل کادر واحد های پاس شده */
+#creditInfo {
+
+    position:fixed;
+
+    top:20px;
+
+    left:20px;
+
+    background:white;
+
+    padding:10px 15px;
+
+    border-radius:10px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+
+    display:flex;
+
+    gap:20px;
+
+    color:#0f4c81;
+
+}
