@@ -1,5 +1,5 @@
 const courses = [
-
+/* لطفا کدها را تغییر ندهید */
     
     
     /* ===
@@ -648,7 +648,9 @@ const courses = [
     name: "فارماکولوژی 3",
     semester: 6,
     units: 2,
-    prerequisites: [],
+    prerequisites: [
+        "pharmacology2"
+    ],
     corequisites: [
         "pharmacology2"
     ],
@@ -660,7 +662,9 @@ const courses = [
     name: "فارماکولوژی 3 ع",
     semester: 6,
     units: 1,
-    prerequisites: [],
+    prerequisites: [
+        "pharmacology3"
+    ],
     corequisites: [
         "pharmacology3"
     ],
@@ -686,7 +690,9 @@ const courses = [
     name: "درمان 1",
     semester: 6,
     units: 3,
-    prerequisites: [],
+    prerequisites: [
+        "pharmacology3"
+],
     corequisites: [
         "pharmacology3"
     ],
@@ -703,6 +709,7 @@ const courses = [
         "pharmaceutics2",
         "pharmaceutics3",
         "pharmaceutics4",
+        "pharmaceutics5",
         "pharmaceutics2_lab",
         "pharmaceutics3_lab"
     ],
@@ -738,7 +745,8 @@ const courses = [
         "pharmaceutics1",
         "pharmaceutics2",
         "pharmaceutics3",
-        "pharmaceutics4"
+        "pharmaceutics4",
+        "microbial_control"
     ],
     corequisites: [
         "microbial_control"
@@ -819,7 +827,7 @@ const courses = [
     name: "درمان 2",
     semester: 7,
     units: 3,
-    prerequisites: [],
+    prerequisites: ["therapy1"],
     corequisites: [
         "therapy1"
     ],
@@ -883,7 +891,8 @@ const courses = [
         "analytical_chemistry",
         "analytical_chemistry_lab",
         "organic2",
-        "organic2_lab"
+        "organic2_lab",
+        "analysis2"
     ],
     corequisites: [
         "analysis2"
@@ -913,7 +922,8 @@ const courses = [
     semester: 8,
     units: 3,
     prerequisites: [
-        "urban_internship"
+        "urban_internship",
+        "therapy3"
     ],
     corequisites: [
         "therapy3"
@@ -988,7 +998,7 @@ const courses = [
     prerequisites: [
         "pharmacognosy1"
     ],
-    corequisites: [],
+    corequisites: ["pharmacognosy1"],
     passed: false
 },
 
@@ -1042,10 +1052,8 @@ const courses = [
     name: "عرصه 2",
     semester: 9,
     units: 3,
-    prerequisites: [],
-    corequisites: [
-        "field1"
-    ],
+    prerequisites: ["field1"],
+    corequisites: ["field1"],
     passed: false
 },
 
@@ -1054,10 +1062,8 @@ const courses = [
     name: "داروسازی بیمارستانی",
     semester: 9,
     units: 1,
-    prerequisites: [],
-    corequisites: [
-        "therapy4"
-    ],
+    prerequisites: ["therapy4"],
+    corequisites: ["therapy4"],
     passed: false
 },
 
@@ -1066,10 +1072,8 @@ const courses = [
     name: "کارآموزی داروسازی بیمارستانی",
     semester: 9,
     units: 1,
-    prerequisites: [],
-    corequisites: [
-        "hospital_pharmacy"
-    ],
+    prerequisites: ["hospital_pharmacy"],
+    corequisites: ["hospital_pharmacy"],
     passed: false
 },
 
@@ -1132,7 +1136,8 @@ const courses = [
         "pharmaceutics4",
         "pharmaceutics2_lab",
         "pharmaceutics3_lab",
-        "pharmaceutics4_lab"
+        "pharmaceutics4_lab",
+        "physicochemical_control"
     ],
     corequisites: [
         "physicochemical_control"
@@ -1145,7 +1150,7 @@ const courses = [
     name: "گنوزی 2 ع",
     semester: 9,
     units: 1,
-    prerequisites: [],
+    prerequisites: ["pharmacognosy2"],
     corequisites: [
         "pharmacognosy2"
     ],
@@ -1158,7 +1163,8 @@ const courses = [
     semester: 9,
     units: 2,
     prerequisites: [
-        "pharmacology3_lab"
+        "pharmacology3_lab",
+        "toxicology"
     ],
     corequisites: [
         "toxicology"
@@ -1298,8 +1304,12 @@ const courses = [
     name: "کارآموزی عرصه (بالینی یا شهری یا صنایع دارویی)",
     semester: 11,
     units: 2,
-    prerequisites: [],
-    corequisites: [],
+    prerequisites: [
+        "industry_internship",
+        "hospital_pharmacy_internship",
+        "field2"
+],
+    corequisites: ["industry_internship"],
     passed: false
 },
 
@@ -1325,10 +1335,8 @@ const courses = [
     name: "مدیریت در داروسازی",
     semester: 11,
     units: 2,
-    prerequisites: [],
-    corequisites: [
-        "economics"
-    ],
+    prerequisites: ["economics"],
+    corequisites: ["economics"],
     passed: false
 },
 
