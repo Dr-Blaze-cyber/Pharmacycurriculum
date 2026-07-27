@@ -466,7 +466,7 @@ function courseClicked(course) {
     
     if (course.locked) {
 
-        let html = "<b>برای اخذ این درس باید این پیش‌نیازها را پاس کنید:</b><br><br>";
+        let html = "<b>برای اخذ این درس باید این پیش‌نیازها را اخذ یا پاس کنید:</b><br><br>";
 
 course.prerequisites.forEach(id => {
 
