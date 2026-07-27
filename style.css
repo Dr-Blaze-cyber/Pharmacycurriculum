@@ -275,15 +275,24 @@ header h1{
 
 .corequisite-button{
 
-    margin-right:6px;
-
+    margin-right:10px;
     border:none;
-
-    background:none;
-
+    background:#1976d2;
+    color:white;
+    border-radius:6px;
     cursor:pointer;
+    padding:2px 7px;
 
-    font-size:16px;
+    font-family: "Aviny", Tahoma, sans-serif;
+
+    font-size:13px;
+    transition:.2s;
+
+}
+
+.corequisite-button:hover{
+
+    background:#0d47a1;
 
 }
 
